@@ -58,7 +58,6 @@ const AddPatient = () => {
     }
 
     try {
-        console.log("patient data", patientData);
       const response = await axios.post(
         `${baseUrl}/api/initialReferral/users/${userId}/referrals`,
         patientData,
@@ -78,123 +77,135 @@ const AddPatient = () => {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto bg-white shadow-md rounded">
-      <h1 className="text-2xl font-bold mb-4">Add New Patient</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="rep"
-          placeholder="Rep"
-          value={patientData.rep}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="text"
-          name="patientName"
-          placeholder="Patient Name"
-          value={patientData.patientName}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="text"
-          name="insurance"
-          placeholder="Insurance"
-          value={patientData.insurance}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <select
-          name="benefit"
-          value={patientData.benefit}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        >
-          <option value="Medical">Medical</option>
-          <option value="Pharmacy">Pharmacy</option>
-        </select>
-        <input
-          type="text"
-          name="drug"
-          placeholder="Drug"
-          value={patientData.drug}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="text"
-          name="md"
-          placeholder="Doctor (MD)"
-          value={patientData.md}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <select
-          name="status"
-          value={patientData.status}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        >
-          <option value="Approved">Approved</option>
-          <option value="Denied">Denied</option>
-          <option value="Initiated">Initiated</option>
-          <option value="Cancelled/No Go">Cancelled/No Go</option>
-        </select>
-        <label className="flex items-center">
+    <div className="p-8 mt-6 max-w-4xl mx-auto bg-gradient-to-r from-blue-100 to-blue-200 shadow-2xl rounded-3xl">
+      <h1 className="text-3xl font-bold text-center text-white-600 mb-6">Add New Patient</h1>
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
+        <div>
+          <input
+            type="text"
+            name="rep"
+            placeholder="Rep"
+            value={patientData.rep}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="patientName"
+            placeholder="Patient Name"
+            value={patientData.patientName}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="insurance"
+            placeholder="Insurance"
+            value={patientData.insurance}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <select
+            name="benefit"
+            value={patientData.benefit}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="Medical">Medical</option>
+            <option value="Pharmacy">Pharmacy</option>
+          </select>
+        </div>
+        <div>
+          <input
+            type="text"
+            name="drug"
+            placeholder="Drug"
+            value={patientData.drug}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="md"
+            placeholder="Doctor (MD)"
+            value={patientData.md}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <select
+            name="status"
+            value={patientData.status}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="Approved">Approved</option>
+            <option value="Denied">Denied</option>
+            <option value="Initiated">Initiated</option>
+            <option value="Cancelled/No Go">Cancelled/No Go</option>
+          </select>
+        </div>
+        <div className="flex items-center">
           <input
             type="checkbox"
             name="dwo"
             checked={patientData.dwo}
             onChange={handleChange}
-            className="mr-2"
+            className="h-5 w-5 text-blue-500 focus:ring-blue-400"
           />
-          DWO
-        </label>
-        
-        {/* Added labels for the two date inputs */}
-        <label htmlFor="welcomeCall" className="block font-medium">
-          Welcome Call Date
-        </label>
-        <input
-          type="date"
-          id="welcomeCall"
-          name="welcomeCall"
-          value={patientData.welcomeCall}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-        <label htmlFor="deliveryDate" className="block font-medium">
-          Delivery Date
-        </label>
-        <input
-          type="date"
-          id="deliveryDate"
-          name="deliveryDate"
-          value={patientData.deliveryDate}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-        <textarea
-          name="notes"
-          placeholder="Notes"
-          value={patientData.notes}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        ></textarea>
-        <button
-          type="submit"
-          className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Add Patient
-        </button>
+          <span className="ml-2">DWO</span>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Welcome Call Date</label>
+          <input
+            type="date"
+            name="welcomeCall"
+            value={patientData.welcomeCall}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Delivery Date</label>
+          <input
+            type="date"
+            name="deliveryDate"
+            value={patientData.deliveryDate}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div className="col-span-2">
+          <textarea
+            name="notes"
+            placeholder="Notes"
+            value={patientData.notes}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          ></textarea>
+        </div>
+        <div className="col-span-2">
+          <button
+            type="submit"
+            className="w-full p-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Add Patient
+          </button>
+        </div>
       </form>
     </div>
   );
